@@ -32,10 +32,29 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background: url('https://source.unsplash.com/1600x900/?travel') no-repeat center center/cover;
             color: var(--foreground);
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.delfi.lv/media-api-image-cropper/v1/5c984b00-7588-11ed-8614-f9abfe79d39f.jpg?w=1600&h=900&r=16:9') no-repeat center center/cover;
+            z-index: -1;
+        }
+
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);
+            z-index: -1;
         }
         
         header {
@@ -69,64 +88,36 @@
         nav a:hover {
             color: var(--primary-light);
         }
-        
-        .main-image {
-            width: 100%;
-            height: 50vh;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .main-image:hover {
-            transform: scale(1.05);
-        }
-
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 50vh;
-            overflow: hidden;
-        }
-
-        .image-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-        }
 
         .content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 50px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-section {
             background: rgba(255, 255, 255, 0.85);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            gap: 20px;
         }
-        
-        .dark-mode .content {
+
+        .dark-mode .info-section {
             background: rgba(45, 55, 72, 0.85);
         }
 
-        h2 {
-            font-size: 2rem;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 1.5rem;
+        h2, h3 {
             color: var(--primary);
+            margin-bottom: 1rem;
         }
 
         .activities {
-    position: sticky;
-    top: 20px;  /* Adjust the distance from the top as needed */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    flex: 1;
-    z-index: 10;  /* Ensure it stays on top of other content */
-}
-
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
 
         .activity-button {
             display: inline-block;
@@ -150,22 +141,9 @@
             transform: scale(1.05);
         }
 
-        .info-section {
-            flex: 1;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 15px;
-        }
-
-        .dark-mode .info-section {
-            background: rgba(45, 55, 72, 0.5);
-        }
-
         #asideInfo {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 20px;
             background: rgba(255, 255, 255, 0.85);
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -211,12 +189,45 @@
             }
 
             .content {
-                flex-direction: column;
+                padding: 0 20px;
             }
+        }
+
+        #map-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+        }
+
+        #map-frame {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            border: none;
+        }
+
+        #close-map {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <div class="background-image"></div>
+    <div class="gradient-overlay"></div>
+
     <header>
         <h1>Travellatvia</h1>
         <nav>
@@ -224,6 +235,7 @@
             <a href="#" id="contactLink"><i class="fas fa-envelope"></i> Contact</a>
             <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
             <a href="signup.html"><i class="fas fa-user-plus"></i> Signup</a>
+            <button id="map-button"><i class="fas fa-map-marker-alt"></i> Map</button>
             <button id="dark-mode-toggle">Dark Mode</button>
         </nav>
     </header>
@@ -240,11 +252,10 @@
                 
                 <section class="activities">
                     <a href="sightseeing.html" class="activity-button">Sightseeing</a>
-                    <a href="food-tours.html" class="activity-button">Food Tours</a>
-                    <a href="adventure-sports.html" class="activity-button">Adventure Sports</a>
+                    <a href="restaurant.html" class="activity-button">Restaurants</a>
                     <a href="cultural-experiences.html" class="activity-button">Cultural Experiences</a>
                     <a href="beach-relaxation.html" class="activity-button">Beach Relaxation</a>
-                    <a href="spa-complex.html" class="activity-button">Spa Complex</a>
+                    <a href="camping.html" class="activity-button">Camping</a>
                 </section>
             </div>
             <div class="info-section">
@@ -278,6 +289,11 @@
         <p>&copy; 2024 Traveling Forum. All rights reserved.</p>
     </footer>
 
+    <div id="map-container">
+        <iframe id="map-frame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2175073.5815540543!2d22.50840005!3d56.8796875!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46e930677b8a9afd%3A0xcfcd68f2fc10!2sLatvia!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+        <span id="close-map">&times;</span>
+    </div>
+
     <script>
         document.getElementById('dark-mode-toggle').addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
@@ -303,6 +319,15 @@
             document.getElementById('homeInfo').classList.remove('active');
             document.getElementById('aboutInfo').classList.remove('active');
             document.getElementById('contactInfo').classList.add('active');
+        });
+
+        // Map functionality
+        document.getElementById('map-button').addEventListener('click', function() {
+            document.getElementById('map-container').style.display = 'block';
+        });
+
+        document.getElementById('close-map').addEventListener('click', function() {
+            document.getElementById('map-container').style.display = 'none';
         });
     </script>
 </body>

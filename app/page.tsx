@@ -29,6 +29,9 @@ export default function Home() {
           <h1 className="text-3xl font-bold text-teal-700 dark:text-teal-300">Travellatvia</h1>
           <nav className="space-x-4">
             <Button variant="ghost" asChild>
+              <Link href="/">Home</Link>
+            </Button>
+            <Button variant="ghost" asChild>
               <Link href="/login">Login</Link>
             </Button>
             <Button variant="ghost" asChild>
@@ -55,18 +58,41 @@ export default function Home() {
               <h2 className="text-3xl font-bold text-center mb-6 text-teal-700 dark:text-teal-300">Explore Latvia</h2>
 
               <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {[
-                  "Sightseeing",
-                  "Food Tours",
-                  "Adventure Sports",
-                  "Cultural Experiences",
-                  "Beach Relaxation",
-                  "Spa Complex",
-                ].map((activity) => (
-                  <Button key={activity} className="text-lg" variant="outline">
-                    {activity}
-                  </Button>
-                ))}
+                <Button
+                  asChild
+                  className="text-lg dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  variant="outline"
+                >
+                  <Link href="/sightseeing">Sightseeing</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="text-lg dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  variant="outline"
+                >
+                  <Link href="/restaurants">Food Tours</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="text-lg dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  variant="outline"
+                >
+                  <Link href="/cultural-experiences">Cultural Experiences</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="text-lg dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  variant="outline"
+                >
+                  <Link href="/beach-relaxation">Beach Relaxation</Link>
+                </Button>
+                <Button
+                  asChild
+                  className="text-lg dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
+                  variant="outline"
+                >
+                  <Link href="/camping">Camping</Link>
+                </Button>
               </section>
             </div>
           </div>

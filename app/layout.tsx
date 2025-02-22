@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "Travellatvia",
   description: "Explore the beauty of Latvia",
-    generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -17,11 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <main>{children}</main>
+      </body>
     </html>
   )
 }
 
-
-
-import './globals.css'

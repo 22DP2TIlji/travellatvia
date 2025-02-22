@@ -1,0 +1,143 @@
+.container {
+  font-family: "Poppins", sans-serif;
+  color: #1a202c;
+  min-height: 100vh;
+  background: url("https://source.unsplash.com/1600x900/?latvia,food") no-repeat center center / cover;
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: -1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #008080;
+}
+
+.header nav {
+  display: flex;
+  gap: 20px;
+}
+
+.header nav a,
+.header nav button {
+  color: #1a202c;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.header nav a:hover,
+.header nav button:hover {
+  color: #008080;
+}
+
+.main {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.main h2 {
+  color: #008080;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.infoSection p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.infoSection ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.infoSection li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.infoSection li::before {
+  content: "•";
+  color: #008080;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #1a202c;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header nav {
+    margin-top: 15px;
+  }
+
+  .main {
+    margin: 20px;
+  }
+}
+
+.darkMode {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+.darkMode .header,
+.darkMode .main,
+.darkMode .footer {
+  background-color: rgba(45, 55, 72, 0.9);
+}
+
+.darkMode .header h1,
+.darkMode .main h2 {
+  color: #4fd1c5;
+}
+
+.darkMode .header nav a,
+.darkMode .header nav button {
+  color: #f7fafc;
+}
+
+.darkMode .header nav a:hover,
+.darkMode .header nav button:hover {
+  color: #4fd1c5;
+}
+

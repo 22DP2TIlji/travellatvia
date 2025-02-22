@@ -1,0 +1,29 @@
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+    color: #008080;
+    margin-bottom: 20px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .button {
+    background-color: #008080;
+    color: white;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #006666;
+  }
+  
+  
